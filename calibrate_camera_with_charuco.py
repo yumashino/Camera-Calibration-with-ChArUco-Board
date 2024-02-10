@@ -7,6 +7,7 @@ import argparse
 import math
 import random
 import datetime
+from time import time
 
 import yaml
 import numpy as np
@@ -153,9 +154,9 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
     if show_image:
         cv2.destroyAllWindows()
 
+    print(f'Use initial camera matrix: {use_init_camera_matrix}')
+    start = time()
     if use_init_camera_matrix:
-        print('Use initial camera matrix.')
-
         focal_length_at_zoom_level = linear_interpolation(zoom_level, zoom_level_wide_end, zoom_level_tele_end,
                                                           focal_length_wide_end_mm, focal_length_tele_end_mm)
         print(f'Estimated focal length at input zoom level \"{zoom_level}\": {focal_length_at_zoom_level:.2f} mm.')
@@ -173,12 +174,11 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
                                                            init_camera_matrix, init_dist_coeffs,
                                                            flags=cv2.CALIB_USE_INTRINSIC_GUESS)
     else:
-        print('Not using initial camera matrix')
         print('Estimating camera parameters. This may take a while...')
         ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(obj_points_all, img_points_all,
                                                            (camera_img_w, camera_img_h), None, None)
-
-    print('Done!')
+    end = time()
+    print('Done! Elapsed time: {:.2f} s'.format(end - start))
     print(f'Re-projection RMS error: {ret:.4f}')
 
     fov_x = 2 * math.atan2(camera_img_w, 2 * mtx[0, 0]) * 180 / math.pi
