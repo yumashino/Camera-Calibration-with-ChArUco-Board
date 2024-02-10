@@ -1,0 +1,44 @@
+inputs:
+  camera:
+    camera_name: Camera_name
+    sensor_width_mm: 35.6
+    sensor_height_mm: 20.1
+    resolution_width_px: 1920
+    resolution_height_px: 1080
+  lens:
+    lens_name: Lens_name
+    focal_length_wide_end_mm: 24
+    focal_length_tele_end_mm: 105
+    zoom_level_wide_end: 0
+    zoom_level_tele_end: 99
+    shooting_zoom_level: 80
+  board:
+    n_squares_x: 9
+    n_squares_y: 5
+    square_length_mm: 38
+    marker_length_mm: 30
+    board_dictionary_name: DICT_6X6_250
+  program:
+    input_config: sample_calibration_input.yaml
+    n_frames_used_for_calibration: -1
+results:
+  rms_re-projection_error: 0.26777140119683945
+  n_max_frames_found_corners: 284.0
+  distance_calibration-board_to_camera_mean_m: 0.5121423266069415
+  distance_calibration-board_to_camera_variance_m: 4.208706037840039
+  distance_calibration-board_to_camera_stddev_m: 2.051513109351251
+  camera_matrix:
+    fx: 1607.4025495276107
+    fy: 1608.761170963441
+    cx: 952.2048015378278
+    cy: 554.0910705554674
+  distortion:
+    k1: 0.18366428457772616
+    k2: -0.4113908834080119
+    p1: 0.000821760714944192
+    p2: -0.0016385948524118023
+    k3: -0.21986257700539644
+  horizontal_fov: 61.69440849405533
+  vertical_fov: 37.10989112640689
+  horizontal_shift: -0.004059999199047996
+  vertical_shift: 0.013047287551358661

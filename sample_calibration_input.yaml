@@ -1,0 +1,22 @@
+camera:
+  # Fill information from your camera specification
+  camera_name: 'Camera_name'
+  sensor_width_mm: 35.6
+  sensor_height_mm: 20.1
+  resolution_width_px: 1920
+  resolution_height_px: 1080
+lens:
+  # Fill information from your lens specification
+  lens_name: 'Lens_name'
+  focal_length_wide_end_mm: 24
+  focal_length_tele_end_mm: 105
+  zoom_level_wide_end: 0
+  zoom_level_tele_end: 99
+  shooting_zoom_level: 80
+board:
+  # Fill information of the calibration board
+  n_squares_x: 9
+  n_squares_y: 5
+  square_length_mm: 38  # Actual length with ruler on MacBook Air M1 2020 display
+  marker_length_mm: 30  # Actual length with ruler on MacBook Air M1 2020 display
+  board_dictionary_name: 'DICT_6X6_250'
