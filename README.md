@@ -48,4 +48,29 @@ It takes a video of a ChArUco board captured from different angles and computes 
     - If you set the `-s` or `--show_image` argument, you can see the detected ChArUco corners and markers in the video.
     ![Detected ChArUco corners](./sample_detected_corners.png)
     ![Detected ChArUco markers](./sample_detected_markers.png)
-1. The output will be saved in a YAML file with the same name as the input video file, but with the extension `_<date>.yaml`. Sample example: [sample_calibration_output_2021-08-25_14-00-00.yaml](./sample_calibration_output_2021-08-25_14-00-00.yaml).
+1. The output will be saved in a YAML file with the same name as the input video file, but with the extension `_<date>.yaml`. Sample example: [sample_calibration_input_results_20240210_2131.yaml](./sample_calibration_input_results_20240210_2131.yaml).
+    ```yaml
+   results:
+      rms_re-projection_error: 0.26777140119683945
+      n_max_frames_found_corners: 284.0
+      distance_calibration-board_to_camera_mean_m: 0.5121423266069415
+      distance_calibration-board_to_camera_variance_m: 4.208706037840039
+      distance_calibration-board_to_camera_stddev_m: 2.051513109351251
+      camera_matrix:
+        fx: 1607.4025495276107
+        fy: 1608.761170963441
+        cx: 952.2048015378278
+        cy: 554.0910705554674
+      distortion:
+        k1: 0.18366428457772616
+        k2: -0.4113908834080119
+        p1: 0.000821760714944192
+        p2: -0.0016385948524118023
+        k3: -0.21986257700539644
+      horizontal_fov: 61.69440849405533
+      vertical_fov: 37.10989112640689
+      horizontal_shift: -0.004059999199047996
+      vertical_shift: 0.013047287551358661
+
+## Note
+- The camera information in the video included as a sample and the sample config yaml are actually different camera information. Please use this file as a reference only to check the operation of the code.
