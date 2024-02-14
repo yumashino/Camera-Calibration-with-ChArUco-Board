@@ -68,8 +68,8 @@ def linear_interpolation(zoom_level, zoom_level_wide_end, zoom_level_tele_end, f
 def calculate_board_to_camera_distance_stats(tvecs):
     distances = [np.linalg.norm(tvec) for tvec in tvecs]
     mean_distance = np.mean(distances) / 1000  # mm -> m
-    variance_distance = np.var(distances) / 1000  # mm -> m
-    std_deviation_distance = np.sqrt(variance_distance)
+    variance_distance = np.var(distances) / (1000 ** 2)  # mm^2 -> m^2
+    std_deviation_distance = np.sqrt(variance_distance)  # m
     return mean_distance, variance_distance, std_deviation_distance
 
 
