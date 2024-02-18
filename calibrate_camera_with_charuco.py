@@ -181,6 +181,9 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
     print('Done! Elapsed time: {:.2f} s'.format(end - start))
     print(f'Re-projection RMS error: {ret:.4f}')
 
+    _, _, estimated_focal_length_mm, principal_point, aspect_ratio = \
+        cv2.calibrationMatrixValues(mtx, (camera_img_w, camera_img_h), sensor_width_mm, sensor_height_mm)
+
     fov_x = 2 * math.atan2(camera_img_w, 2 * mtx[0, 0]) * 180 / math.pi
     fov_y = 2 * math.atan2(camera_img_h, 2 * mtx[1, 1]) * 180 / math.pi
     shift_x = (mtx[0, 2] - camera_img_w / 2) / camera_img_w
@@ -208,8 +211,8 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
             'p2': float(dist[0][3]),
             'k3': float(dist[0][4])
         },
-        'horizontal_fov': float(fov_x),
-        'vertical_fov': float(fov_y),
+        'horizontal_fov_deg': float(fov_x),
+        'vertical_fov_deg': float(fov_y),
         'horizontal_shift': float(shift_x),
         'vertical_shift': float(shift_y)
     }
@@ -220,7 +223,10 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
         'input_video': input_video_path,
         'n_frames_used_for_calibration': max_frame_n,
         'show_image': show_image,
-        'use_init_camera_matrix': use_init_camera_matrix
+        'use_init_camera_matrix': use_init_camera_matrix,
+        'estimated_focal_length_mm': estimated_focal_length_mm,
+        'principal_point': principal_point,
+        'aspect_ratio': aspect_ratio
     }
 
     output_yaml_path = generate_output_filename(config_path)
