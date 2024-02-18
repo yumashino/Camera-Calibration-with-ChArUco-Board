@@ -242,7 +242,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_frame_n', '-n', type=int, default=-1,
                         help='Max number of frames to use for calibration. If negative value, use all frames.')
     parser.add_argument('--show_image', '-s', action='store_true', help='Show detected markers and corners')
-    parser.add_argument('--use_init_camera_matrix', '-u', action='store_true',
+    parser.add_argument('--use_init_camera_matrix', '-u', default=True,
                         help='Use initial camera matrix for calibration')
     args = parser.parse_args()
 
