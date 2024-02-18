@@ -166,13 +166,14 @@ def main(config_path, input_video_path, max_frame_n, show_image=False, use_init_
                                                      image_width_px, image_height_px)
         np.set_printoptions(precision=2, suppress=True)
         print(f'Initial camera matrix:\n{init_camera_matrix}')
-
         print('\nEstimating camera parameters. This may take a while...')
         init_dist_coeffs = None  # If specify, [K1, K2, P1, P2]
+
+        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 10000, 1e-8)
         ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(obj_points_all, img_points_all,
                                                            (camera_img_w, camera_img_h),
                                                            init_camera_matrix, init_dist_coeffs,
-                                                           flags=cv2.CALIB_USE_INTRINSIC_GUESS)
+                                                           flags=cv2.CALIB_USE_INTRINSIC_GUESS, criteria=criteria)
     else:
         print('Estimating camera parameters. This may take a while...')
         ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(obj_points_all, img_points_all,
